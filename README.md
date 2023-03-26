@@ -1,12 +1,12 @@
 # HW-Proxy-Checker
-Script for verifying signal assignments in T3000 non-fail HW proxies against HW_assignment_list
+Script for verifying signal assignments in T3000 non-fail safe HW proxies against HW_assignment_list
 
 ## Constraints
 
 - The script in meant to verify assignments only for non-fail safe ET200 modules.
 
 - The script will ignore evaluation of rows which satisfy any of the following criteria. It is the responsibility of the user to check these rows manually as may be needed.
-    - "MLFB" field is not defined in p4.toml config file (check entries in list "mlfb").
+    - "MLFB" field is not defined in config.toml file (MLFBs are defined in 'modules' key in the config file).
     - Empty "KKS" field. Whitespace count as empty.
     - Any character in "change_token" field is '$'.
     
