@@ -1,0 +1,121 @@
+# File types limited to .xlsx and .xlsm
+
+# Set paths for input files. All paths must be within single quotes.
+file_hw_assign = '.\data\BD1062_Mymensingh_ET200_IO-table_4kF_2023-03-16_rev_F_in_work.xlsm'
+file_t3000_1 = '.\data\hw_export_t3000_1.xlsx'
+
+# Set path for second T3000 file if needed. Else, make sure that below string remains empty (i.e. equal to '').
+file_t3000_2 = ''
+
+
+# Set path for result file. Path must be within single quotes.
+file_diff = '.\result\diff.xlsx'
+
+# Set prefix.
+prefix = 11
+
+
+# Set constraints for cabinet, channel, rt, slot and station. All list items must be within single quotes.
+cabinet = [ 'CPA01', 'CPA02', 'CPA21', 'CJP41' ] 
+channel = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15' ]
+rt = [ 'AI', 'AO', 'DI', 'DO' ]
+slot = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30' ] 
+station = [ 'BA', 'CA', 'DA', 'EA', 'FB', 'PA', 'PB', 'PC' ]
+
+
+# Set module config.
+# All fields that need to looked up from HW assignment list must be referred to as '@fieldName@'
+# All portNames must have their associated attribute names within <>.
+# All portNames and their values must be within single quotes.
+# All portNames must have 'xx_' (xx is placeholder for channel number)
+[modules.SM131_6BH00.DI]
+'DIxx_PV<Signal Tag Name>' = '@KKS@'
+'DIxx_PV<Signal Name>' = '@SIGDEF@'
+'DIxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DIxx_PV<Active Alarm English (United States) (en_US)>' = '@SETTING@'
+
+[modules.SM132_6BH00.DO]
+'DOxx_PV<Signal Tag Name>' = '@KKS@'
+'DOxx_PV<Signal Name>' = '@SIGDEF@'
+'DOxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+
+[modules.SM133_6EW00.AI] 
+'AIxx_PV<Signal Tag Name>' = '@KKS@'
+'AIxx_PV<Signal Name>' = '@SIGDEF@'
+'AIxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DIAIxx_sTR<Value>' = 'AI:4..20mA'
+'AIxx_sFS<Value>' = '50 Hz'
+'AIxx_sWB_LIMIT<Value>' = '1,185 mA'
+'AIxx_sEU<Value>' = '@EUNITS_SI@'
+'AIxx_sLL<Value>' = '@OPLORANG_SI@'
+'AIxx_sUL<Value>' = '@OPHIRANG_SI@'
+  # [modules.SM133_6EW00.AI.'DOxx_sTR<Value>'] # in case of lookup, defining the default key is must.
+  # 'lookup' = '@PWRSRC@'
+  # 'default' = 'check?'
+  # 'external' = 'deactivated'
+  # 'internal' = 'Sensor Supply'
+
+[modules.SM133_6EW00.DI]
+'DIxx_PV<Signal Tag Name>' = '@KKS@'
+'DIxx_PV<Signal Name>' = '@SIGDEF@'
+'DIxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DIxx_PV<Active Alarm English (United States) (en_US)>' = '@SETTING@'
+'DIAIxx_sTR<Value>' = 'DI'
+
+[modules.SM133_6EW00.DO]
+'DOxx_PV<Signal Tag Name>' = '@KKS@'
+'DOxx_PV<Signal Name>' = '@SIGDEF@'
+'DOxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DOxx_sTR<Value>' = 'DO'
+
+[modules.SM133_6EW00_AS.DI]
+'DIxx_PV<Signal Tag Name>' = '@KKS@'
+'DIxx_PV<Signal Name>' = '@SIGDEF@'
+'DIxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DIxx_PV<Active Alarm English (United States) (en_US)>' = '@SETTING@'
+
+[modules.SM133_6EW00_AS.DO]
+'DOxx_PV<Signal Tag Name>' = '@KKS@'
+'DOxx_PV<Signal Name>' = '@SIGDEF@'
+'DOxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'DOxx_sTR<Value>' = 'DO'
+
+[modules.SM134_6JH00.AI]
+'AIxx_PV<Signal Tag Name>' = '@KKS@'
+'AIxx_PV<Signal Name>' = '@SIGDEF@'
+'AIxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'AIxx_sFS<Value>' = '50 Hz'
+'AIxx_sEU<Value>' = '@EUNITS_SI@'
+'AIxx_sLL<Value>' = '@OPLORANG_SI@'
+'AIxx_sUL<Value>' = '@OPHIRANG_SI@'
+  # [modules.SM134_6JH00.AI.'AIxx_sTR<Value>'] # in case of lookup, defining the default key is must.
+  # 'lookup' = '@device_type@'
+  # 'TC_N' = 'TC type N'
+  # 'RTD_3w' = '3-wire Pt 100 std'
+  # 'RTD_4w' = '4-wire Pt 100 std'
+  # 'default' = 'check?'
+  [modules.SM134_6JH00.AI.'AIxx_sTR<Value>'] # in case of lookup, defining the default key is must.
+  'lookup' = '@TYPE@'
+  'AITCK' = 'TC type K'
+  'RTD83' = '3-wire Pt 100 std'
+  'RTD84' = '4-wire Pt 100 std'
+  'default' = 'check?'
+  
+[modules.SM135_6TF00.AO]
+'AOxx_PV<Signal Tag Name>' = '@KKS@'
+'AOxx_PV<Signal Name>' = '@SIGDEF@'
+'AOxx_PV<Designation English (United States) (en_US)>' = '@DESCRIPTION@'
+'AOxx_sTR<Value>' = 'Current 4..20mA'
+'AOxx_sEU<Value>' = '@EUNITS_SI@'
+'AOxx_sLL<Value>' = '@OPLORANG_SI@'
+'AOxx_sUL<Value>' = '@OPHIRANG_SI@'
+
+
+
+
+# Do not change below line unless absolutely sure.
+[tagname_t3k_hw_proxy]
+'format' = 'cabinet + station + "|SLOT " + slot'
+
+
+
