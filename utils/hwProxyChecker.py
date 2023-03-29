@@ -5,7 +5,6 @@ import re
 from openpyxl import load_workbook, Workbook
 from pprint import pprint
 import deepdiff
-from openpyxl import Workbook as openpyxl_wb
 
 # global variables
 config_file = r'config.toml'
@@ -561,7 +560,7 @@ def write_diff():
     list_result_diff = diff_check(t3000_dict, io_table_dict)
 
     print("Writing results.")
-    wb = openpyxl_wb() # create workbook object.
+    wb = Workbook() # create workbook object.
     ws = wb.active # create worksheet object.
     for row in list_result_diff:
         ws.append(row) # adds values to cells, each list is a new row.
