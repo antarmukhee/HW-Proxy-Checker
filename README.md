@@ -9,6 +9,7 @@ Script for verifying signal assignments in T3000 non-fail safe HW proxies agains
     - "MLFB" field is not defined in config.toml file (MLFBs are defined in 'modules' key in the config file).
     - Empty "KKS" field. Whitespace count as empty.
     - Any character in "change_token" field is '$'.
+    - Any string in "change_token" field is 'spare'.
     
 - The format for ET200 HW proxy tagname (as used in T3000) is considered as following. Key **tagname_t3k_hw_proxy** defined in the **config.toml** file would need to be modified to handle any change in this naming convention. It is assumed that this tag naming convention is consistent for all non-fail safe ET200 proxies.
 
