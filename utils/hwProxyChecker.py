@@ -160,7 +160,7 @@ def io_data_hw_assignment():
         if mlfb == None: continue
         if not (mlfb in config_dict['modules'].keys()): continue
         
-        if '$' in str(chg_token): continue
+        if '$' in str(chg_token) or 'spare' in str(chg_token).lower(): continue
             
         if kks == None: continue
         if kks == "": continue
